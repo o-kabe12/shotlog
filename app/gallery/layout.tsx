@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import "./globals.css";
+import "../globals.css";
 
 export const metadata: Metadata = {
-  title: "Home | ShotLog",
+  title: "Gallery | ShotLog",
   description: "写真とテキストを組み合わせた写真保管アプリ",
 };
 
-export default function RootLayout({
+export default function GalleryLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
