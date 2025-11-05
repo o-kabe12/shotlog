@@ -5,3 +5,9 @@ export type Item = {
   tags: string[];
   createdAt: string;
 }
+
+export type GalleryItemDetailProps = {
+  params: Promise<{
+    id: string;
+  }>;
+}
