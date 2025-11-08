@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "../../globals.css";
 
-import { MOCK_TASKS } from "@/app/lib/mockData";
+import { MOCK_DATA } from "@/app/lib/mockData";
 import { GalleryItemDetailProps } from "@/app/lib/type";
 import Image from "next/image";
 import { notFound } from "next/navigation";
@@ -16,7 +16,7 @@ export default function GalleryItemDetail({ params }: GalleryItemDetailProps) {
   const resolvedParams = use(params);
   const itemId = Number(resolvedParams.id); 
 
-  const item = MOCK_TASKS.find((task) => Number(task.id) === itemId);
+  const item = MOCK_DATA.find((task) => Number(task.id) === itemId);
 
   if (!item) {
     notFound();
@@ -24,14 +24,20 @@ export default function GalleryItemDetail({ params }: GalleryItemDetailProps) {
 
   return (
     <div className="w-[90%] mx-auto">
-      <h1 className="text-3xl font-bold underline mb-4">ギャラリー詳細</h1>
-
-      <div className="md:flex items-start gap-6">
-        <div>
+      <div className="md:flex items-start gap-6 py-10">
+        <div className="w-full md:w-[45%]  mb-6 md:mb-0">
           <Image src={`${item.image}`} alt={item.text} width={300} height={300} className="w-full h-full"/>
         </div>
         <div>
-          <p>{item.text}</p>
+          <p className="text-sm text-gray-500">{item.createdAt}</p>
+          {item.tags && (
+            <div className="flex flex-wrap gap-2 mt-2">
+              {item.tags.map((tag) => (
+                <span key={tag} className="text-sm text-gray-500 bg-gray-200 rounded-md px-2 py-1">{tag}</span>
+              ))}
+            </div>
+          )}
+          <p className="mt-2 text-lg">{item.text}</p>
         </div>
       </div>
     </div>
@@ -40,7 +46,7 @@ export default function GalleryItemDetail({ params }: GalleryItemDetailProps) {
 
 
 export async function generateStaticParams() {
-  return MOCK_TASKS.map((task) => ({
+  return MOCK_DATA.map((task) => ({
     id: String(task.id),
   }));
 }

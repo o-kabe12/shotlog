@@ -1,6 +1,6 @@
 import { Item } from "./type";
 
-export const MOCK_TASKS: Item[] = [
+export const MOCK_DATA: Item[] = [
   {
     id: '1',
     image: '/gallery/image_001.jpg',
