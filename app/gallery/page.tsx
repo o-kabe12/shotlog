@@ -1,6 +1,12 @@
 import { MOCK_TASKS } from "@/app/lib/mockData";
+import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Gallery | ShotLog",
+  description: "写真とテキストを組み合わせた写真保管アプリ",
+};
 
 export default function Gallery() {
   return (

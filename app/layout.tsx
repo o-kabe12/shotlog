@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Header from "./components/Header";
 
 export const metadata: Metadata = {
   title: "Home | ShotLog",
@@ -13,7 +14,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
-      <body>
+      <body className="max-w-[1366px] mx-auto">
+        <Header />
         {children}
       </body>
     </html>
