@@ -5,7 +5,7 @@ interface InputSearchProps {
 
 export default function InputSearch({ value, onChange }: InputSearchProps) {
   return (
-    <div className="mb-6 md:w-[500px]">
+    <div className="md:w-[500px]">
       <input
         type="text"
         placeholder="Search..."

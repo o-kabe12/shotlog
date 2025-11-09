@@ -3,9 +3,9 @@
 import { MOCK_DATA } from "@/app/lib/mockData";
 import Image from "next/image";
 import Link from "next/link";
-import InputSearch from "../components/InputSearch";
 import { Item } from "../lib/type";
 import { useMemo, useState } from "react";
+import FilterBar from "../components/FilterBar";
 
 const filterData = (items: Item[], query: string): Item[] => {
   if (!query) {
@@ -23,15 +23,25 @@ const filterData = (items: Item[], query: string): Item[] => {
     const dateMatch = item.createdAt.toLowerCase().includes(lowerCaseQuery);
 
     return textMatch || tagsMatch || dateMatch;
-  })
+  });
 }
 
 export default function Gallery() {
   const [searchQuery, setSearchQuery] = useState<string>('');
+  const [sortOrder, setSortOrder] = useState("a-z");
 
   const filteredData = useMemo(() =>{
     return filterData(MOCK_DATA as Item[], searchQuery);
-  },[searchQuery]);
+  },[searchQuery]).sort((a, b) => {
+    switch (sortOrder) {
+      case 'a-z':
+        return a.createdAt?.localeCompare(b.createdAt || '') || 0;
+      case 'z-a':
+        return b.createdAt?.localeCompare(a.createdAt || '') || 0;
+      default:
+        return 0;
+    }
+  });
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value);
@@ -39,9 +49,11 @@ export default function Gallery() {
 
   return (
     <div className="w-[90%] mx-auto py-10">
-      <InputSearch 
+      <FilterBar
         value={searchQuery}
         onChange={handleSearchChange}
+        sortOrder={sortOrder}
+        setSortOrder={setSortOrder}  
       />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {filteredData.map((item) => (
