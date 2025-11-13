@@ -1,11 +1,11 @@
 "use client";
 
-import { MOCK_DATA } from "@/app/lib/mockData";
+import { MOCK_DATA } from "@/lib/mockData";
 import Image from "next/image";
 import Link from "next/link";
-import { Item } from "../lib/type";
+import { Item } from "../../lib/type";
 import { useMemo, useState } from "react";
-import FilterBar from "../components/FilterBar";
+import FilterBar from "../../components/FilterBar";
 
 const filterByText = (items: Item[], query: string): Item[] => {
   if (!query) {

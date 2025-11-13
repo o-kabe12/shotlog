@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import "../../globals.css";
 
-import { MOCK_DATA } from "@/app/lib/mockData";
-import { GalleryItemDetailProps } from "@/app/lib/type";
+import { MOCK_DATA } from "@/lib/mockData";
+import { GalleryItemDetailProps } from "@/lib/type";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { use } from 'react';
