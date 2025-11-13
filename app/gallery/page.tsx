@@ -35,9 +35,10 @@ export default function Gallery() {
     // 全てのcreatedAtから "YYYY-MM" 部分を抽出
     const allDates = MOCK_DATA.map(item => item.createdAt?.substring(0, 7)).filter((date): date is string => !!date);
     
+    
     // ユニークな "YYYY-MM" を取得し、ソート
     const uniqueDates = Array.from(new Set(allDates)).sort();
-
+    
     // ラベル（YYYY年MM月）に変換
     const options = uniqueDates.map(ym => {
         const [year, month] = ym.split('-');
